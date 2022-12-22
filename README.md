@@ -14,4 +14,4 @@ We will use a Bing API to use address data (street, city, state, zip) to find la
 
 ## Local Execution
 Loading initial dataframe
-![Alt Text](screenshots/run_terminal.PNG?raw=true "execution of program in terminal")
+![Alt Text](screenshots/run_terminal.png?raw=true "execution of program in terminal")
