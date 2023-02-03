@@ -12,5 +12,5 @@ We will use a Bing API to use address data (street, city, state, zip) to find la
 - Bing API
 
 ## Local Execution
-Loading initial dataframe
+Run in the terminal 
 ![Alt Text](screenshots/run_terminal.png?raw=true "execution of program in terminal")
