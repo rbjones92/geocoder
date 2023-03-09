@@ -1,7 +1,7 @@
 import pandas as pd
 import geocoder 
-key = 'ArxnM6fNPCfN_gfZQyXoDYreLKQInbzll9F_t4hMmRZl0eVmC3jJ3NXPGnUHtwuq'
-
+key = open('bing_key.txt','r')
+key = key.readline()
 
 def geolocate_lat(ServiceAddress,ServiceCity,ServiceZipCode,ServiceState):
     
