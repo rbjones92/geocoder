@@ -1,9 +1,15 @@
+# Robert Jones
+# 3.8.23
+# GeoCode Battery Deliveries From 2022
+
 import pandas as pd
-import geocoder 
+import geocoder
 key = open('bing_key.txt','r')
 key = key.readline()
 
-def geolocate_lat(ServiceAddress,ServiceCity,ServiceZipCode,ServiceState):
+
+
+def geolocate(ServiceAddress,ServiceCity,ServiceZipCode,ServiceState):
     
     full_address = f'{ServiceAddress}, {ServiceCity}, {ServiceZipCode}, {ServiceState}'
 
@@ -11,35 +17,18 @@ def geolocate_lat(ServiceAddress,ServiceCity,ServiceZipCode,ServiceState):
         g = geocoder.bing(full_address,key=key)
         results = g.json
         lat = results['lat']
-        print(f'found latitude {lat}')
-        return lat
+        lng = results['lng']
+        print(f'Address = {full_address} Latitude = {lat} Longitude = {lng}')
+
+        return lat,lng
 
     except:
             print(f'Could not find {full_address}')
             return 
 
+df = pd.read_excel('batts_delivered_2022.xlsx')
 
-def geolocate_long(ServiceAddress,ServiceCity,ServiceZipCode,ServiceState):
-      
-    full_address = f'{ServiceAddress}, {ServiceCity}, {ServiceZipCode}, {ServiceState}'
+df['lat_lng'] = df.apply(lambda x: geolocate(x['address'], x['city'], x['zip'], x['state']), axis=1)
 
-    try:
-        g = geocoder.bing(full_address,key=key)
-        results = g.json
-        lng = results['lng']
-        print(f'found longitude {lng}')
-        return lng
-
-    except:
-            print(f'Could not find {full_address}')
-            return
-
-
-df = pd.DataFrame({'ServiceAddress': '10397 PIERI CT','ServiceCity':'MOSS LANDING','ServiceZipCode':'95039','ServiceState':'CA'},index=['test_address'])
-
-df['latidude'] = df.apply(lambda x: geolocate_lat(x['ServiceAddress'], x['ServiceCity'], x['ServiceZipCode'], x['ServiceState']), axis=1)
-
-df['longitude'] = df.apply(lambda x: geolocate_long(x['ServiceAddress'], x['ServiceCity'], x['ServiceZipCode'], x['ServiceState']), axis=1)
-
-print(df)
+df.to_excel('geocoded_batts_delivered_2022.xlsx')
 
