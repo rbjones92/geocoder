@@ -31,4 +31,7 @@ df = pd.read_excel('batts_delivered_2022.xlsx')
 df['lat_lng'] = df.apply(lambda x: geolocate(x['address'], x['city'], x['zip'], x['state']), axis=1)
 
 df.to_excel('geocoded_batts_delivered_2022.xlsx')
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2196c86d8690b007b5bfbe5484641432ce547052
