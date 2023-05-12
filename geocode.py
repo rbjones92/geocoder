@@ -37,7 +37,7 @@ for index, row in pd_df.iterrows():
 
 
 not_caught_df = pd.DataFrame.from_dict(not_caught,orient='index')
-not_caught_df.to_csv('liheap_2008_to_2022_geocode_not_caught.csv')
+# not_caught_df.to_csv('liheap_2008_to_2022_geocode_not_caught.csv')
 
 # Write file
 # pd_df.to_csv('liheap_2008_to_2022_geocode.csv')
